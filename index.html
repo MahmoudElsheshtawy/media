@@ -280,7 +280,6 @@
         
          
           showalert("تم تسجسل الدخول بنجاح")
-        // logoud()
        
         setupUi()
         
@@ -316,7 +315,6 @@ document.getElementById("btn-register").addEventListener("click",function(){
       })
       .then(function (response) {
           console.log(response.data.token);
-          // console.log(response);
           let token =response.data.token
           localStorage.setItem("token" ,token)
           localStorage.setItem("user" ,JSON.stringify(response.data.user))
@@ -332,8 +330,6 @@ document.getElementById("btn-register").addEventListener("click",function(){
 
       })
       .catch(function (error) {
-          // alert(error.response.data.message);
-          // console.log(error.response)
           showalert(error.response.data.message,"danger")
       });
 
