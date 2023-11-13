@@ -6,6 +6,7 @@
     <title>socail-medai</title>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css"/>
    
    <script src="./node_modules/axios/dist/axios.js"></script>
    
@@ -19,14 +20,15 @@
 
     </style>
 </head>
-<body>
+<body style="position: relative;">
   
 
     <!-- navbar -->
         <div class="container mt-2 d-flex justify-content-center " >
             <nav class="navbar navbar-expand-lg col-9 bg-body-tertiary shadow-sm rounded">
                 <div class="container-fluid">
-                  <div id="information" class="bg-info d-flex align-items-center mx-2">
+                  <div id="information" class=" d-flex align-items-center mx-2">
+                   
                     <img src="" id="img-user" style="width: 20px;height: 20px; margin-right: 10px;"/>
                     <span id="name-user" class="fw-bold"></span>
                  </div>
@@ -155,13 +157,48 @@
   </div>
 </div>
 <!-- 2 register -->
+<!-- new post -->
+<div class="modal fade" id="think" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">what do you think</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Title:</label>
+            <input type="text" class="form-control" id="name-id"  >
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">img:</label>
+            <input type="text" class="form-control" id="name-id"  >
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+        <button type="button" id="think" class="btn btn-primary">add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- new post -->
 
 <!-- modle -->
 
       <!-- alert -->
       <div id="liveAlertPlaceholder" class="fade show " style="position: absolute;z-index: 999999;
        right: 0;bottom: 0;"></div>
+      <!-- alert -->
 
+<div id="think" data-bs-toggle="modal" data-bs-target="#think"  >
+<span id="blus">+</span>
+</div>
 
 <script>
   setupUi()
@@ -217,7 +254,7 @@
      let username= document.getElementById("gmail-id").value
      let password= document.getElementById("password-id").value
    
-const userInfo =document.getElementById("name-user").innerHTML =username
+     let userInfo =document.getElementById("name-user").innerHTML =username
       var body = {
       "username": username,
       "password": password,
@@ -234,7 +271,7 @@ const userInfo =document.getElementById("name-user").innerHTML =username
           let token =response.data.token
           localStorage.setItem("token" ,token)
           localStorage.setItem("user" ,JSON.stringify(response.data.user))
-          localStorage.setItem("name-user",userInfo)
+          localStorage.setItem("userInfo",userInfo)
         
           const modal = document.getElementById("login-modal")
           const modleinstance = bootstrap.Modal.getInstance(modal)
@@ -311,16 +348,21 @@ function setupUi() {
  const logout_Div =document.getElementById("logoutDiv")
  const login_Div =document.getElementById("loginDiv")
  const information =document.getElementById("information")
+ const blus =document.getElementById("blus")
+
 
 if(token == null){ //not logd in
 login_Div.style.setProperty("display", "flex", "important")
   logout_Div.style.setProperty("display", "none", "important")
   information.style.setProperty("display", "none", "important")
+  blus.style.setProperty("display", "none", "important")
+
   
 }else{
   login_Div.style.setProperty("display", "none", "important")
   logout_Div.style.setProperty("display", "flex", "important")
   information.style.setProperty("display", "flex", "important")
+  blus.style.setProperty("display", "flex", "important")
 
 }
 

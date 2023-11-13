@@ -1,0 +1,19 @@
+#think span{
+    position: fixed;
+    top: 737px;
+    cursor: pointer;
+    right: 100px;
+    font-size: 39px;
+    padding: 4px;
+    background-color: #0c82ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem;
+    /* z-index: 100000000; */
+    color: #ffffff;
+    border-radius: 50%;
+    /* text-decoration: none; */
+    width: 60px;
+    height: 60px;
+}
