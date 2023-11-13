@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>socail-medai</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+   
+   <script src="./node_modules/axios/dist/axios.js"></script>
+   
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- <script src="./node_modules/bootstrap-icons/font/bootstrap-icons.min.css"></script> -->
+    <style>
+
+      body{
+        background-color: #f0ecff;
+      }
+
+    </style>
+</head>
+<body>
+  
+
+    <!-- navbar -->
+        <div class="container mt-2 d-flex justify-content-center " >
+            <nav class="navbar navbar-expand-lg col-9 bg-body-tertiary shadow-sm rounded">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#">Sheshtawy</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                      </li>
+                 
+                    </ul>
+                    <div id="loginDiv" >
+                        <button id="login" type="button" data-bs-toggle="modal" data-bs-target="#login-modal" class="btn btn-outline-success fw-bold mx-1">login</button>
+                        <button id="register" type="button" class="btn btn-outline-success fw-bold">register</button>
+                       
+
+                    </div>
+                    <div id="logoutDiv" onclick="logoud()" >
+                      <button  class="btn btn-outline-danger fw-bold" >Logout </button>
+                    </div>
+                  </div>
+                
+                </div>
+              </nav>
+          </div>
+<!-- 2 -->
+<!-- main content -->
+
+<div class="container d-flex justify-content-center">
+  <div class="post mt-5 col-9  " id="Posts">
+    
+      <div class="card">
+        <div class="card-header">
+          <div id="imgP"></div> 
+          <div class="hed shadow-lg mb-2">
+          <img id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle ">
+          <span>elsheshatwy</span>
+         </div>
+          <img  class="w-100  " src="https://images.pexels.com/photos/18968224/pexels-photo-18968224/free-photo-of-light.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
+        </div>
+        <div class="card-body">
+          <h6>5 minent ago</h6>
+          <h4>kkkkkkkkkkkkkkkk</h4>
+          <h5>kkkkkkkkkkkkkkkk</h5>
+          <hr>
+          <span>
+            <i class="fa-regular fa-comment"></i> ()comimnts
+          </span>
+        
+        </div>
+      </div>
+    </div> 
+     
+
+
+  </div>
+
+    </div>
+    <div id="content" class="content">
+
+
+</div>
+<!-- modle -->
+<div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Login:</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">user_name:</label>
+            <input type="text" class="form-control" id="gmail-id"  value="mahmoud_22">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label" >password:</label>
+            <input class="form-control" id="password-id" value="123456"></input>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+        <button type="button" id="btn" class="btn btn-primary">login</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modle -->
+
+      <!-- alert -->
+      <div id="liveAlertPlaceholder" class="fade show bg-primary" style="position: absolute;
+       right: 0;bottom: 0;"></div>
+
+
+<script>
+  setupUi()
+  // feching data from api>
+  getdatabyAxios=()=>{
+     axios.get("https://tarmeezacademy.com/api/v1/posts")
+     .then((response)=>{
+        let posts = response.data.data
+        // console.log(posts)
+
+       for(post of posts){
+       let content =`
+       <div class="card">
+        <div class="card-header">
+        
+         <div class="hed shadow-lg mb-2">
+          <img id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle " src="${post.author.profile_image}">
+          
+          <span>${post.author.username}</span>
+         </div>
+          <img  class="w-100  " src="${post.image}"/>
+        </div>
+        <div class="card-body">
+          <h6>${post.created_at}</h6>
+          <h4>${post.author.name}</h4>
+          <h5>${post.body}</h5>
+          <hr>
+          <span>
+            <i class="fa-regular fa-comment"></i> ()comimnts
+          </span>
+        
+        </div>
+      </div>
+       
+       
+       
+       `
+      //  console.log(post.author)
+     let img = document.getElementById("Posts").innerHTML += content
+       }
+
+     }).catch((err)=>{
+         console.log(err)
+     })
+  }
+  getdatabyAxios()
+  // feching data from api-.
+
+
+  // login btn>
+  document.getElementById("btn").addEventListener("click",function(){
+     
+     let username= document.getElementById("gmail-id").value
+     let password= document.getElementById("password-id").value
+   
+  
+  //  axios.post("").thin((response)=>{
+  //         response.json()
+  //  })
+      var body = {
+      "username": username,
+      "password": password,
+        }
+
+      axios({
+          method: 'post',
+          url: 'https://tarmeezacademy.com/api/v1/login',
+          data: body
+          
+      })
+      .then(function (response) {
+          console.log(response.data.token);
+          let token =response.data.token
+          localStorage.setItem("token" ,token)
+          localStorage.setItem("user" ,JSON.stringify(response.data.user))
+          // window.location="Login.html"
+          // alert("is login broo")
+        
+          const modal = document.getElementById("login-modal")
+          const modleinstance = bootstrap.Modal.getInstance(modal)
+    
+          modleinstance.hide()
+          // alert("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+         
+          showalert()
+        // logoud()
+       
+        setupUi()
+        
+
+      })
+      .catch(function (error) {
+          alert(error.response.data.message);
+          console.log(error.response)
+      });
+
+   
+
+})
+  // login btn.
+
+
+function setupUi() {
+  const token = localStorage.getItem("token")
+ const logout_Div =document.getElementById("logoutDiv")
+ const login_Div =document.getElementById("loginDiv")
+if(token == null){ //not logd in
+login_Div.style.setProperty("display", "flex", "important")
+  logout_Div.style.setProperty("display", "none", "important")
+  // setupUi()
+  // logoud()
+}else{
+  login_Div.style.setProperty("display", "none", "important")
+  logout_Div.style.setProperty("display", "flex", "important")
+  // setupUi()
+  // logoud()
+}
+
+}
+
+
+function logoud(){
+  localStorage.removeItem("token")
+  localStorage.removeItem("user")
+  showalert()
+  setupUi()
+
+}
+
+
+
+
+
+function showalert(){
+  const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+const alert = (message, type) => {
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    '</div>'
+  ].join('')
+
+  alertPlaceholder.append(wrapper)
+}
+ alert('Nice, you triggered this alert message!')
+  
+    setTimeout(()=>{
+      const alertt = bootstrap.Alert.getOrCreateInstance('#liveAlertPlaceholder')
+      // alertt.close()
+    },2000)
+  
+}
+
+
+
+  </script>
+</body>
+
+
+</html>
