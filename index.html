@@ -42,7 +42,7 @@
                     </ul>
                     <div id="loginDiv" >
                         <button id="login" type="button" data-bs-toggle="modal" data-bs-target="#login-modal" class="btn btn-outline-success fw-bold mx-1">login</button>
-                        <button id="register" type="button" class="btn btn-outline-success fw-bold">register</button>
+                        <button id="rgister-btn" type="button" class="btn btn-outline-success fw-bold" data-bs-toggle="modal" data-bs-target="#register-modal">register</button>
                        
 
                     </div>
@@ -103,11 +103,11 @@
         <form>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">user_name:</label>
-            <input type="text" class="form-control" id="gmail-id"  value="mahmoud_22">
+            <input type="text" class="form-control" id="gmail-id"  >
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label" >password:</label>
-            <input class="form-control" id="password-id" value="123456"></input>
+            <input class="form-control" id="password-id" ></input>
           </div>
         </form>
       </div>
@@ -118,10 +118,43 @@
     </div>
   </div>
 </div>
+<!-- 2 register -->
+<div class="modal fade" id="register-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">register:</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">name:</label>
+            <input type="text" class="form-control" id="name-id"  >
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">user_name:</label>
+            <input type="text" class="form-control" id="register-gmail-id"  >
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label" >password:</label>
+            <input class="form-control" id="register-password-id" ></input>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+        <button type="button" id="btn-register" class="btn btn-primary">Register</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 2 register -->
+
 <!-- modle -->
 
       <!-- alert -->
-      <div id="liveAlertPlaceholder" class="fade show bg-primary" style="position: absolute;
+      <div id="liveAlertPlaceholder" class="fade show " style="position: absolute;
        right: 0;bottom: 0;"></div>
 
 
@@ -208,7 +241,7 @@
           modleinstance.hide()
           // alert("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
          
-          showalert()
+          showalert("تم تسجسل الدخول بنجاح")
         // logoud()
        
         setupUi()
@@ -225,6 +258,52 @@
 })
   // login btn.
 
+// register btn
+document.getElementById("btn-register").addEventListener("click",function(){
+     let name= document.getElementById("name-id").value
+     let username= document.getElementById("register-gmail-id").value
+     let password= document.getElementById("register-password-id").value
+
+      var body = {
+                "username": username,
+                "password": password,
+                "name" :name,
+            }
+
+      axios({
+          method: 'post',
+          url: 'https://tarmeezacademy.com/api/v1/register',
+          data: body
+          
+      })
+      .then(function (response) {
+          console.log(response.data.token);
+          // console.log(response);
+          let token =response.data.token
+          localStorage.setItem("token" ,token)
+          localStorage.setItem("user" ,JSON.stringify(response.data.user))
+        
+        // hide modle 
+          const modal = document.getElementById("register-modal")
+          const modleinstance = bootstrap.Modal.getInstance(modal)
+          modleinstance.hide()
+      
+        showalert("تم انشاء حساب جديد بنجاح") 
+        setupUi()
+        
+
+      })
+      .catch(function (error) {
+          // alert(error.response.data.message);
+          console.log(error.response)
+          showalert(error.response.data.message,"debugger")
+      });
+
+   
+
+})
+
+// register btn
 
 function setupUi() {
   const token = localStorage.getItem("token")
@@ -233,13 +312,11 @@ function setupUi() {
 if(token == null){ //not logd in
 login_Div.style.setProperty("display", "flex", "important")
   logout_Div.style.setProperty("display", "none", "important")
-  // setupUi()
-  // logoud()
+
 }else{
   login_Div.style.setProperty("display", "none", "important")
   logout_Div.style.setProperty("display", "flex", "important")
-  // setupUi()
-  // logoud()
+
 }
 
 }
@@ -248,16 +325,14 @@ login_Div.style.setProperty("display", "flex", "important")
 function logoud(){
   localStorage.removeItem("token")
   localStorage.removeItem("user")
-  showalert()
+  showalert("تم تسجيل خروج بنجاح")
   setupUi()
 
 }
 
 
 
-
-
-function showalert(){
+function showalert(message){
   const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 const alert = (message, type) => {
   const wrapper = document.createElement('div')
@@ -270,7 +345,7 @@ const alert = (message, type) => {
 
   alertPlaceholder.append(wrapper)
 }
- alert('Nice, you triggered this alert message!')
+ alert(message,"success")
   
     setTimeout(()=>{
       const alertt = bootstrap.Alert.getOrCreateInstance('#liveAlertPlaceholder')
@@ -278,8 +353,6 @@ const alert = (message, type) => {
     },2000)
   
 }
-
-
 
   </script>
 </body>
