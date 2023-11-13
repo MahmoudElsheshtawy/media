@@ -154,7 +154,7 @@
 <!-- modle -->
 
       <!-- alert -->
-      <div id="liveAlertPlaceholder" class="fade show " style="position: absolute;
+      <div id="liveAlertPlaceholder" class="fade show " style="position: absolute;z-index: 999999;
        right: 0;bottom: 0;"></div>
 
 
@@ -232,14 +232,13 @@
           let token =response.data.token
           localStorage.setItem("token" ,token)
           localStorage.setItem("user" ,JSON.stringify(response.data.user))
-          // window.location="Login.html"
-          // alert("is login broo")
+     
         
           const modal = document.getElementById("login-modal")
           const modleinstance = bootstrap.Modal.getInstance(modal)
     
           modleinstance.hide()
-          // alert("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+        
          
           showalert("تم تسجسل الدخول بنجاح")
         // logoud()
@@ -249,7 +248,7 @@
 
       })
       .catch(function (error) {
-          alert(error.response.data.message);
+        showalert(error.response.data.message,"danger");
           console.log(error.response)
       });
 
@@ -295,8 +294,8 @@ document.getElementById("btn-register").addEventListener("click",function(){
       })
       .catch(function (error) {
           // alert(error.response.data.message);
-          console.log(error.response)
-          showalert(error.response.data.message,"debugger")
+          // console.log(error.response)
+          showalert(error.response.data.message,"danger")
       });
 
    
@@ -322,7 +321,7 @@ login_Div.style.setProperty("display", "flex", "important")
 }
 
 
-function logoud(){
+function logoud(type){
   localStorage.removeItem("token")
   localStorage.removeItem("user")
   showalert("تم تسجيل خروج بنجاح")
@@ -332,7 +331,7 @@ function logoud(){
 
 
 
-function showalert(message){
+function showalert(message,type="success"){
   const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 const alert = (message, type) => {
   const wrapper = document.createElement('div')
@@ -345,7 +344,7 @@ const alert = (message, type) => {
 
   alertPlaceholder.append(wrapper)
 }
- alert(message,"success")
+ alert(message,type)
   
     setTimeout(()=>{
       const alertt = bootstrap.Alert.getOrCreateInstance('#liveAlertPlaceholder')
