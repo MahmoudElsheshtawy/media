@@ -26,7 +26,11 @@
         <div class="container mt-2 d-flex justify-content-center " >
             <nav class="navbar navbar-expand-lg col-9 bg-body-tertiary shadow-sm rounded">
                 <div class="container-fluid">
-                  <a class="navbar-brand" href="#">Sheshtawy</a>
+                  <div id="information" class="bg-info d-flex align-items-center mx-2">
+                    <img src="" id="img-user" style="width: 20px;height: 20px; margin-right: 10px;"/>
+                    <span id="name-user" class="fw-bold"></span>
+                 </div>
+                  <!-- <a class="navbar-brand" href="#">Sheshtawy</a> -->
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -47,6 +51,7 @@
 
                     </div>
                     <div id="logoutDiv" onclick="logoud()" >
+                      
                       <button  class="btn btn-outline-danger fw-bold" >Logout </button>
                     </div>
                   </div>
@@ -212,10 +217,7 @@
      let username= document.getElementById("gmail-id").value
      let password= document.getElementById("password-id").value
    
-  
-  //  axios.post("").thin((response)=>{
-  //         response.json()
-  //  })
+const userInfo =document.getElementById("name-user").innerHTML =username
       var body = {
       "username": username,
       "password": password,
@@ -232,7 +234,7 @@
           let token =response.data.token
           localStorage.setItem("token" ,token)
           localStorage.setItem("user" ,JSON.stringify(response.data.user))
-     
+          localStorage.setItem("name-user",userInfo)
         
           const modal = document.getElementById("login-modal")
           const modleinstance = bootstrap.Modal.getInstance(modal)
@@ -308,13 +310,17 @@ function setupUi() {
   const token = localStorage.getItem("token")
  const logout_Div =document.getElementById("logoutDiv")
  const login_Div =document.getElementById("loginDiv")
+ const information =document.getElementById("information")
+
 if(token == null){ //not logd in
 login_Div.style.setProperty("display", "flex", "important")
   logout_Div.style.setProperty("display", "none", "important")
-
+  information.style.setProperty("display", "none", "important")
+  
 }else{
   login_Div.style.setProperty("display", "none", "important")
   logout_Div.style.setProperty("display", "flex", "important")
+  information.style.setProperty("display", "flex", "important")
 
 }
 
