@@ -329,7 +329,7 @@ document.getElementById("btn-register").addEventListener("click",function(){
     })
   
       .then(function (response) {
-          console.log(response);
+          console.log(response.data.user.profile_image);
           let token =response.data.token
           localStorage.setItem("token" ,token)
           localStorage.setItem("user" ,JSON.stringify(response.data.user))
@@ -387,11 +387,12 @@ login_Div.style.setProperty("display", "flex", "important")
      }
 return user
 
-  // document.getElementById("name-user").innerHTML =user.username
-  // document.getElementById("img-user").innerHTML =user.profile_image
+
+  document.getElementById("name-user").innerHTML =user.username
+  document.getElementById("img-user").src=user.profile_image
 
 }
-
+// console.log(user +"dffffffffffffffffffffffffff")
 }
 
 
