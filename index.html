@@ -29,8 +29,8 @@
                 <div class="container-fluid">
                   <div id="information" class=" d-flex align-items-center mx-2">
                    
-                    <img src=""id="img-user" style="width: 40px;height: 40px; margin-right: 10px; border-radius: 50%; object-fit: cover;background-position: center;"/>
-                    <span id="name-user" class="fw-bold">fack-name</span>
+                    <img id="img-user" style="width: 40px;height: 40px; margin-right: 10px; border-radius: 50%; object-fit: cover;background-position: center;"/>
+                    <span id="name-user" class="fw-bold"></span>
                  </div>
                   <!-- <a class="navbar-brand" href="#">Sheshtawy</a> -->
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -206,14 +206,47 @@
 </div>
 
 <script>
-  setupUi()
+
+
+
+let currentPage = 1
+let lastPage =1
+
+//======================= infinte scrool====================//
+
+window.addEventListener("scroll" ,function(){
+//  return boolan
+  const endOfPage = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
+
+  if (endOfPage && currentPage <lastPage) {
+    currentPage =currentPage + 1
+    getdatabyAxios(false ,currentPage)
+ 
+  }
+// console.log(endOfPage)
+// console.log(lastPage)
+})
+
+
+
+
+//======================= infinte scrool====================//
+setupUi()
+
+
   // feching data from api>
-  getdatabyAxios=()=>{
-     axios.get("https://tarmeezacademy.com/api/v1/posts")
+  // getdatabyAxios()
+
+  getdatabyAxios=(relode = true,page =1)=>{
+     axios.get(`https://tarmeezacademy.com/api/v1/posts?limit=2&page=${page}`)
      .then((response)=>{
         let posts = response.data.data
+        lastPage =response.data.meta.last_page
         // console.log(posts)
+         if (relode) {
+          document.getElementById("Posts").innerHTML = ""
 
+         }
        for(post of posts){
        let content =`
        <div class="card">
@@ -250,6 +283,8 @@
      })
   }
   getdatabyAxios()
+
+
   // feching data from api-.
 
   // login btn>
@@ -304,14 +339,7 @@ document.getElementById("btn-register").addEventListener("click",function(){
      let name= document.getElementById("name-id").value
      let username= document.getElementById("register-gmail-id").value
      let password= document.getElementById("register-password-id").value
-     let image= document.getElementById("register-img").files[0]
-
-
-
-
-    document.getElementById("img-user").innerHTML =content
-
-
+     let image=document.getElementById("register-img").files[0]
 
      let formData =new FormData()
     formData.append("name", name)
@@ -320,7 +348,6 @@ document.getElementById("btn-register").addEventListener("click",function(){
     formData.append("image",image)
 
   
-
     const headers ={
           "Content-Type":"multipart/form-data"
         }
@@ -369,24 +396,19 @@ login_Div.style.setProperty("display", "flex", "important")
   logout_Div.style.setProperty("display", "none", "important")
   // information.style.setProperty("display", "none", "important")
   blus.style.setProperty("display", "none", "important")
-  nameuser.style.setProperty("display", "none", "important")
-  imguser.style.setProperty("display", "none", "important")
+  // nameuser.style.setProperty("display", "none", "important")
+  // imguser.style.setProperty("display", "none", "important")
 
   
 }else{
   login_Div.style.setProperty("display", "none", "important")
   logout_Div.style.setProperty("display", "flex", "important")
-  nameuser.style.setProperty("display", "flex", "important")
-  imguser.style.setProperty("display", "flex", "important")
+  // nameuser.style.setProperty("display", "flex", "important")
+  // imguser.style.setProperty("display", "flex", "important")
   blus.style.setProperty("display", "flex", "important")
 
-  let user =null
-      const storageUser =localStorage.getItem("user")
-    if (storageUser != null) {
-      user =JSON.parse(storageUser)
-     }
-return user
 
+const user =getCurrentuser()
 
   document.getElementById("name-user").innerHTML =user.username
   document.getElementById("img-user").src=user.profile_image
@@ -401,7 +423,7 @@ function logoud(type){
   localStorage.removeItem("user")
   showalert("تم تسجيل خروج بنجاح")
   setupUi()
-
+location.reload()
 }
 
 function showalert(message,type="success"){
@@ -468,14 +490,17 @@ function addpost(){
 
 
 }
-// let adduserinthetopbar=()=>{
-// let user =null
-// const storageUser =localStorage.getItem("user")
-// if (storageUser != null) {
-//   user =JSON.parse(storageUser)
-// }
-// return user
-// }
+function getCurrentuser(){
+  let user =null
+   const storageUser =localStorage.getItem("user")
+   if(storageUser != null){
+    user = JSON.parse(storageUser)
+   }
+
+return user
+console.log(user)
+}
+
 
   </script>
 </body>
