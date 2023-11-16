@@ -238,11 +238,11 @@ setupUi()
   // getdatabyAxios()
 
   getdatabyAxios=(relode = true,page =1)=>{
-     axios.get(`https://tarmeezacademy.com/api/v1/posts?limit=2&page=${page}`)
+     axios.get(`https://tarmeezacademy.com/api/v1/posts?limit=5&page=${page}`)
      .then((response)=>{
         let posts = response.data.data
         lastPage =response.data.meta.last_page
-        // console.log(posts)
+        console.log(lastPage)
          if (relode) {
           document.getElementById("Posts").innerHTML = ""
 
