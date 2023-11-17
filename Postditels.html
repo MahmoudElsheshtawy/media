@@ -1,11 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>post_ditalis</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>socail-medai</title>
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+        <link rel="stylesheet" href="style.css"/>
+       
+       <script src="./node_modules/axios/dist/axios.js"></script>
+       
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- <script src="./node_modules/bootstrap-icons/font/bootstrap-icons.min.css"></script> -->
+        <style>
+    
+          body{
+            background-color: #f0ecff;
+          }
+    
+        </style>
+    </head>
+
 <body>
+    <!-- navbar -->
+
+
+    <div class="container mt-2 d-flex justify-content-center " >
+        <nav class="navbar navbar-expand-lg col-9 bg-body-tertiary shadow-sm rounded">
+            <div class="container-fluid">
+              <div id="information" class=" d-flex align-items-center mx-2">
+               
+                <img id="img-user" style="width: 40px;height: 40px; margin-right: 10px; border-radius: 50%; object-fit: cover;background-position: center;"/>
+                <span id="name-user" class="fw-bold">elsheshtawy</span>
+             </div>
+              <!-- <a class="navbar-brand" href="#">Sheshtawy</a> -->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+             
+                </ul>
+                <div id="loginDiv" >
+                    <button id="login" type="button" data-bs-toggle="modal" data-bs-target="#login-modal" class="btn btn-outline-success fw-bold mx-1">login</button>
+                    <button id="rgister-btn" type="button" class="btn btn-outline-success fw-bold" data-bs-toggle="modal" data-bs-target="#register-modal">register</button>
+                   
+
+                </div>
+                <div id="logoutDiv" onclick="logoud()" >
+                  
+                  <button  class="btn btn-outline-danger fw-bold" >Logout </button>
+                </div>
+              </div>
+            
+            </div>
+          </nav>
+      </div>
+    <!-- navbar -->
+    <!-- new post -->
+<div class="modal fade" id="think" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">what do you think</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Title:</label>
+              <input type="text" class="form-control" id="title-post"  >
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">text:</label>
+              <textarea type="text" class="form-control" id="text-post" ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">img:</label>
+              <input type="file" class="form-control" id="img-post"  >
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+          <button type="button" id="think" class="btn btn-primary" onclick="addpost()">add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- new post -->
+  <!-- alert -->
+<div id="liveAlertPlaceholder" class="fade show " style="position:fixed;z-index: 999999;
+right: 0;bottom: 0;"></div>
+<!-- alert -->
+<!-- 2 register -->
+<div class="modal fade" id="register-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">register:</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Your-img</label>
+              <input type="file" class="form-control" id="register-img"  >
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">name:</label>
+              <input type="text" class="form-control" id="name-id"  >
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">user_name:</label>
+              <input type="text" class="form-control" id="register-gmail-id"  >
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label" >password:</label>
+              <input class="form-control" id="register-password-id" ></input>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+          <button type="button" id="btn-register" class="btn btn-primary">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 2 register -->
+  <!-- LOGIN-MODLE -->
+  <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Login:</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">user_name:</label>
+              <input type="text" class="form-control" id="gmail-id"  >
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label" >password:</label>
+              <input class="form-control" id="password-id" ></input>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+          <button type="button" id="btn" class="btn btn-primary">login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- LOGIN-MODLE -->
+
+
+
     
 </body>
+<script>
+
+
+</script>
 </html>
