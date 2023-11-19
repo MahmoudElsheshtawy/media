@@ -102,10 +102,10 @@
 </span>
 
 </div>
-<div id="comments">
-  <img src="" alt="">
+<div id="comments-page" style="background-color: #cbcaca;">
+  <img src="" alt="" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle ">
   <span>jbdusvkbdi;svbuisuvdvisluvvds</span>
-
+  <p>kkkkkkkkkkkkkkkkk</p>
 
 
 </div>
@@ -244,9 +244,11 @@ let getPost=()=>{
      console.log(comments)
      document.getElementById("head").innerHTML = ""
      document.getElementById("body").innerHTML = ""
+    //  document.getElementById("comments-page").innerHTML=""
   
 
       let contents =`
+
               <div class="container mt-2"  >
                       <div class="row   d-flex justify-content-center">
                         <div class="col-lg-9 ">
@@ -261,8 +263,26 @@ let getPost=()=>{
 
                 <!-- post content -->
                 `
+             let cmments_data =``
+                for(comnt of comments){
+               cmments_data +=`
+          
+                  <div style="background-color: #aaa;">
+                    <img style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle " src="${comnt.author.profile_image}" alt="">
+                  <span>${comnt.author.username}</span>
+                  <p> ${comnt.body}</p>
+                  </div>
+          
+          `  
+      
 
-                let contentsbody =`
+
+
+
+
+           }
+      let contentsbody =`
+
                 
                 <div class="container d-flex justify-content-center">
                    <div class="post col-9  ">
@@ -285,16 +305,20 @@ let getPost=()=>{
                     <span>
                       <i class="fa-regular fa-comment"></i> ${posts.comments_count} comimnts
                     </span>
+                    ${cmments_data}
 
                 </div>
                 </div>
                 </div> 
                 </div>
                 `
-           
+
+
+      
 
      document.getElementById("head").innerHTML += contents
      document.getElementById("body").innerHTML += contentsbody
+    //  document.getElementById("comments-page").innerHTML += cmments_data
 
       }
   )
