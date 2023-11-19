@@ -80,8 +80,8 @@
 
 </div>
 <!-- post content -->
-<div class="container d-flex justify-content-center">
-<div class="post mt-5 col-9  " id="body">
+<div class="container  d-flex justify-content-center">
+<div class="post mt-5 col-lg-9  " id="body">
 
 <div class="card" >
 <div class="card-header">
@@ -238,29 +238,36 @@ let getPost=()=>{
 
       let contents =`
               <div class="container mt-2"  >
-
-
-        <div class="row mt-5  d-flex justify-content-center">
-          <div class="col-lg-9 ">
-            <h1>
-              <span>${posts.author.username}</span>
-            post
-            </h1>
-          </div>
-        </div>
-
-
+                      <div class="row   d-flex justify-content-center">
+                        <div class="col-lg-9 ">
+                          <h1>
+                            <span>${posts.author.username}</span>
+                          post
+                          </h1>
+                        </div>
+                      </div>
                 </div>
-                <!-- post content -->
-                <div class="container d-flex justify-content-center">
-                <div class="post mt-5 col-9  ">
 
-                <div class="card" >
+
+                <!-- post content -->
+          
+      
+      
+      
+
+                `
+                let contentsbody =`
+                
+                <div class="container d-flex justify-content-center">
+                   <div class="post col-9  ">
+
+                   <div class="card" >
+
                 <div class="card-header">
                 <div id="imgP"></div> 
                 <div class="hed shadow-lg mb-2">
                 <img src=${posts.author.profile_image} id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle ">
-                <span>elsheshatwy</span>
+                <span>${posts.author.username}</span>
                 </div>
                     <img  class="w-100  " src="${posts.image}"/>
                     </div>
@@ -280,13 +287,22 @@ let getPost=()=>{
 
 
                 </div>
-      
-      
-      
-      `
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                `
       // console.log(post)
      document.getElementById("head").innerHTML += contents
-     document.getElementById("body").innerHTML += contents
+     document.getElementById("body").innerHTML += contentsbody
       }
   // }
   )
