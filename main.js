@@ -1,5 +1,4 @@
 
-setupUi()
 
 // ============= FECHING-DATA-FROM API ============//
 getdatabyAxios=(relode = true,page =1)=>{
@@ -22,9 +21,10 @@ getdatabyAxios=(relode = true,page =1)=>{
          
          <span>${post.author.username}</span>
         </div>
-         <img  class="w-100  " src="${post.image}"/>
        </div>
-       <div class="card-body">
+       <div class="card-body" onclick="postcliced(${post.id})">
+       <img  class="w-100  " src="${post.image}"/>
+
          <h6>${post.created_at}</h6>
          <h4>${post.author.name}</h4>
          <h5>${post.body}</h5>
@@ -154,15 +154,21 @@ function setupUi() {
     const blus =document.getElementById("blus")
    
    if(token == null){ //not logd in
+    if (blus != null) {
+      blus.style.setProperty("display", "none", "important")
+    }
    login_Div.style.setProperty("display", "flex", "important")
      logout_Div.style.setProperty("display", "none", "important")
-     blus.style.setProperty("display", "none", "important")
+    
    
      
    }else{
+    if (blus != null) {
+     blus.style.setProperty("display", "flex", "important")
+      
+    }
      login_Div.style.setProperty("display", "none", "important")
      logout_Div.style.setProperty("display", "flex", "important")
-     blus.style.setProperty("display", "flex", "important")
    
    
    const user =getCurrentuser()
@@ -172,6 +178,8 @@ function setupUi() {
    
    }
    }
+setupUi()
+
 // ============= SETAP-UI ============//
 
 // ============= ALARTE-MESSAGE ============//
@@ -208,5 +216,23 @@ function logoud(type){
   }
 // ============= LOGE-OUT ============//
 
+// ============= CURRNT-USER ============//
+function getCurrentuser(){
+  let user =null
+   const storageUser =localStorage.getItem("user")
+   if(storageUser != null){
+    user = JSON.parse(storageUser)
+   }
+
+return user
+console.log(user)
+}
+// ============= CURRNT-USER ============//
 
 
+
+const postcliced=(postid)=>{
+
+window.location =`Postditels.html?postid=${postid}`
+  // alert(postid)
+}

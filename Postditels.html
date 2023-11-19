@@ -30,8 +30,8 @@
             <div class="container-fluid">
               <div id="information" class=" d-flex align-items-center mx-2">
                
-                <img id="img-user" style="width: 40px;height: 40px; margin-right: 10px; border-radius: 50%; object-fit: cover;background-position: center;"/>
-                <span id="name-user" class="fw-bold">elsheshtawy</span>
+                <img src="https://images.pexels.com/photos/15118791/pexels-photo-15118791/free-photo-of-a-person-holding-a-picture.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" id="img-user" style="width: 40px;height: 40px; margin-right: 10px; border-radius: 50%; object-fit: cover;background-position: center;"/>
+                <span id="name-user" class="fw-bold"><a href="/index.html">elsheshatwy</a></span>
              </div>
               <!-- <a class="navbar-brand" href="#">Sheshtawy</a> -->
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,6 +63,57 @@
           </nav>
       </div>
     <!-- navbar -->
+    <!--content  -->
+
+  <div class="container mt-2" id="head">
+
+
+    <div class="row mt-5  d-flex justify-content-center">
+      <div class="col-lg-9 ">
+         <h1>
+          <span>elsheshatwy</span>
+        post
+         </h1>
+      </div>
+    </div>
+
+
+</div>
+<!-- post content -->
+<div class="container d-flex justify-content-center">
+<div class="post mt-5 col-9  " id="body">
+
+<div class="card" >
+<div class="card-header">
+<div id="imgP"></div> 
+<div class="hed shadow-lg mb-2">
+<img id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle ">
+<span>elsheshatwy</span>
+</div>
+<img  class="w-100  " src="https://images.pexels.com/photos/18968224/pexels-photo-18968224/free-photo-of-light.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
+</div>
+<div class="card-body">
+<h6>5 minent ago</h6>
+<h4>fdffbbd</h4>
+<h5>fdbfbdfbdfbdf</h5>
+<hr>
+<span>
+  <i class="fa-regular fa-comment"></i> comimnts
+</span>
+
+</div>
+</div>
+</div> 
+
+
+
+</div>
+
+<!-- post content -->
+
+
+    <!--content  -->
+  
     <!-- new post -->
 <div class="modal fade" id="think" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -169,7 +220,78 @@ right: 0;bottom: 0;"></div>
     
 </body>
 <script>
+// setupUi()
+const urlParams = new URLSearchParams(window.location.search)
+const id =urlParams.get("postid")
+console.log(id)
 
+
+
+let getPost=()=>{
+  axios.get(`https://tarmeezacademy.com/api/v1/posts/${id}`).then((res)=>{
+    //  console.log(res.data.data)
+     let posts = res.data.data
+     console.log(posts)
+     document.getElementById("head").innerHTML = ""
+     document.getElementById("body").innerHTML = ""
+    //  for(post of posts){
+
+      let contents =`
+              <div class="container mt-2"  >
+
+
+        <div class="row mt-5  d-flex justify-content-center">
+          <div class="col-lg-9 ">
+            <h1>
+              <span>${posts.author.username}</span>
+            post
+            </h1>
+          </div>
+        </div>
+
+
+                </div>
+                <!-- post content -->
+                <div class="container d-flex justify-content-center">
+                <div class="post mt-5 col-9  ">
+
+                <div class="card" >
+                <div class="card-header">
+                <div id="imgP"></div> 
+                <div class="hed shadow-lg mb-2">
+                <img src=${posts.author.profile_image} id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle ">
+                <span>elsheshatwy</span>
+                </div>
+                    <img  class="w-100  " src="${posts.image}"/>
+                    </div>
+                    <div class="card-body">
+                    <h6>${posts.created_at}</h6>
+                    <h4>${posts.body}</h4>
+                   
+                    <hr>
+                    <span>
+                    <i class="fa-regular fa-comment"></i> ${posts.comments_count} comimnts
+                    </span>
+
+                </div>
+                </div>
+                </div> 
+
+
+
+                </div>
+      
+      
+      
+      `
+      // console.log(post)
+     document.getElementById("head").innerHTML += contents
+     document.getElementById("body").innerHTML += contents
+      }
+  // }
+  )
+}
+getPost()
 
 </script>
 <script src="main.js"></script>

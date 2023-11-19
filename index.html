@@ -21,7 +21,7 @@
     </style>
 </head>
 <body style="position: relative;">
- <a href="Postditels.html">to detalse</a>
+ <!-- <a href="Postditels.html">to detalse</a> -->
 
     <!-- navbar -->
         <div class="container mt-2 d-flex justify-content-center " >
@@ -29,8 +29,8 @@
                 <div class="container-fluid">
                   <div id="information" class=" d-flex align-items-center mx-2">
                    
-                    <img id="img-user" style="width: 40px;height: 40px; margin-right: 10px; border-radius: 50%; object-fit: cover;background-position: center;"/>
-                    <span id="name-user" class="fw-bold">elsheshtawy</span>
+                    <img src="https://images.pexels.com/photos/15118791/pexels-photo-15118791/free-photo-of-a-person-holding-a-picture.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" id="img-user" style="width: 40px;height: 40px; margin-right: 10px; border-radius: 50%; object-fit: cover;background-position: center;"/>
+                    <span id="name-user" class="fw-bold">elsheshatwy</span>
                  </div>
                   <!-- <a class="navbar-brand" href="#">Sheshtawy</a> -->
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@
           <div id="imgP"></div> 
           <div class="hed shadow-lg mb-2">
           <img id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle ">
-          <span>elsheshatwy</span>
+          <span><a href="/index.html">elsheshatwy</a></span>
          </div>
           <img  class="w-100  " src="https://images.pexels.com/photos/18968224/pexels-photo-18968224/free-photo-of-light.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
         </div>
@@ -489,16 +489,7 @@ function addpost(){
 
 
 }
-function getCurrentuser(){
-  let user =null
-   const storageUser =localStorage.getItem("user")
-   if(storageUser != null){
-    user = JSON.parse(storageUser)
-   }
 
-return user
-console.log(user)
-}
 
 
   </script>
