@@ -97,13 +97,22 @@
 <h4>fdffbbd</h4>
 <h5>fdbfbdfbdfbdf</h5>
 <hr>
-<span>
+<span id="butom">
   <i class="fa-regular fa-comment"></i> comimnts
 </span>
 
 </div>
+<div id="comments">
+  <img src="" alt="">
+  <span>jbdusvkbdi;svbuisuvdvisluvvds</span>
+
+
+
 </div>
+</div>
+
 </div> 
+
 
 
 
@@ -223,7 +232,7 @@ right: 0;bottom: 0;"></div>
 // setupUi()
 const urlParams = new URLSearchParams(window.location.search)
 const id =urlParams.get("postid")
-console.log(id)
+// console.log(id)
 
 
 
@@ -231,10 +240,11 @@ let getPost=()=>{
   axios.get(`https://tarmeezacademy.com/api/v1/posts/${id}`).then((res)=>{
     //  console.log(res.data.data)
      let posts = res.data.data
-     console.log(posts)
+     let comments = res.data.data.comments
+     console.log(comments)
      document.getElementById("head").innerHTML = ""
      document.getElementById("body").innerHTML = ""
-    //  for(post of posts){
+  
 
       let contents =`
               <div class="container mt-2"  >
@@ -250,12 +260,8 @@ let getPost=()=>{
 
 
                 <!-- post content -->
-          
-      
-      
-      
-
                 `
+
                 let contentsbody =`
                 
                 <div class="container d-flex justify-content-center">
@@ -277,34 +283,20 @@ let getPost=()=>{
                    
                     <hr>
                     <span>
-                    <i class="fa-regular fa-comment"></i> ${posts.comments_count} comimnts
+                      <i class="fa-regular fa-comment"></i> ${posts.comments_count} comimnts
                     </span>
 
                 </div>
                 </div>
                 </div> 
-
-
-
                 </div>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 `
-      // console.log(post)
+           
+
      document.getElementById("head").innerHTML += contents
      document.getElementById("body").innerHTML += contentsbody
+
       }
-  // }
   )
 }
 getPost()
