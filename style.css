@@ -17,3 +17,28 @@
     width: 60px;
     height: 60px;
 }
+#add-btn{
+    background-color: #0c82ff;
+    width: 200px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    color: #ffffff;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+#add-input{
+border-radius: 10px;
+padding: 5px;
+outline: none;
+border: 1px #aaa solid;
+width: 80%;
+
+
+}
+#add_post{
+    width: 100%;
+    display: flex;
+    padding: 1rem;
+}

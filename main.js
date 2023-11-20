@@ -152,6 +152,7 @@ function setupUi() {
     const nameuser =document.getElementById("name-user")
     const imguser =document.getElementById("img-user")
     const blus =document.getElementById("blus")
+    // const addpost = document.getElementById("add_post")
    
    if(token == null){ //not logd in
     if (blus != null) {
@@ -159,7 +160,8 @@ function setupUi() {
     }
    login_Div.style.setProperty("display", "flex", "important")
      logout_Div.style.setProperty("display", "none", "important")
-    
+    //  addpost.style.setProperty("display", "none", "important")
+
    
      
    }else{
@@ -169,6 +171,8 @@ function setupUi() {
     }
      login_Div.style.setProperty("display", "none", "important")
      logout_Div.style.setProperty("display", "flex", "important")
+    //  addpost.style.setProperty("display", "flex", "important")
+    
    
    
    const user =getCurrentuser()

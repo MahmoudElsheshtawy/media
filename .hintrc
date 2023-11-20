@@ -6,6 +6,7 @@
     "axe/text-alternatives": "off",
     "axe/parsing": "off",
     "no-inline-styles": "off",
-    "axe/name-role-value": "off"
+    "axe/name-role-value": "off",
+    "button-type": "off"
   }
 }
