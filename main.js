@@ -1,4 +1,4 @@
-
+// const { default: axios } = require("axios")
 
 // ============= FECHING-DATA-FROM API ============//
 getdatabyAxios=(relode = true,page =1)=>{
@@ -6,12 +6,23 @@ getdatabyAxios=(relode = true,page =1)=>{
     .then((response)=>{
        let posts = response.data.data
        lastPage =response.data.meta.last_page
-       console.log(lastPage)
+       console.log(posts)
         if (relode) {
          document.getElementById("Posts").innerHTML = ""
 
         }
       for(post of posts){
+        let user = getCurrentuser()
+        let ismyPost =user !=null && post.author.id == user.id
+        let buttoncontent =``
+        let deletebtn =``
+        if(ismyPost){
+        
+        buttoncontent = ` <button onclick="editonclick('${encodeURIComponent(JSON.stringify(post))}')" class="btn btn-primary float-end" style=" margin : 7px;">edit</button>`
+        deletebtn = ` <button onclick="deleteonclick(post.id)" class="btn btn-danger float-end" style=" margin : 7px;">delet</button>`
+
+
+        }
       let content =`
       <div class="card">
        <div class="card-header">
@@ -20,7 +31,9 @@ getdatabyAxios=(relode = true,page =1)=>{
          <img id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle " src="${post.author.profile_image}">
          
          <span>${post.author.username}</span>
-        </div>
+         ${buttoncontent}
+         ${deletebtn}
+         </div>
        </div>
        <div class="card-body" onclick="postcliced(${post.id})">
        <img  class="w-100  " src="${post.image}"/>
@@ -239,4 +252,59 @@ const postcliced=(postid)=>{
 
 window.location =`Postditels.html?postid=${postid}`
   // alert(postid)
+}
+// ==============editonclick =============//
+const editonclick =(postobject)=>{
+ let post= JSON.parse(decodeURIComponent(postobject))
+ console.log(post)
+
+
+
+ document.getElementById("post-edit-id").value = post.id
+ document.getElementById("think-edit-post").innerHTML = "update"
+
+  document.getElementById("post-modle-title").innerHTML = "edit post"
+  document.getElementById("text-post").value = post.body
+  document.getElementById("title-post").value = post.title
+ 
+postModle = new bootstrap.Modal(document.getElementById("think"),{})
+postModle.toggle()
+}
+// ==============editonclick =============//
+
+
+
+const handleaddpost=()=>{
+  // let post= JSON.parse(decodeURIComponent(postobject))
+  // console.log(post)
+ 
+ 
+ 
+  document.getElementById("post-edit-id").value = ""
+  document.getElementById("think-edit-post").innerHTML = "Create"
+ 
+   document.getElementById("post-modle-title").innerHTML = "Create Your Post"
+   document.getElementById("text-post").value =""
+   document.getElementById("title-post").value = ""
+  
+ postModle = new bootstrap.Modal(document.getElementById("think"),{})
+ postModle.toggle()
+
+
+
+}
+
+
+const deleteonclick =(id)=>{
+
+axios.delete(`https://tarmeezacademy.com/api/v1/post/${id}`).then((res)=>{
+  console.log(id)
+console.log(res)
+}).catch((error)=>{
+console.log(error.message)
+
+})
+
+
+
 }

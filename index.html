@@ -166,7 +166,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">what do you think</h1>
+        <h1 class="modal-title fs-5" id="post-modle-title">what do you think</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -174,6 +174,7 @@
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Title:</label>
             <input type="text" class="form-control" id="title-post"  >
+            <input type="hidden" class="form-control" id="post-edit-id" value=""  >
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">text:</label>
@@ -187,7 +188,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-        <button type="button" id="think" class="btn btn-primary" onclick="addpost()">add</button>
+        <button type="button" id="think-edit-post" class="btn btn-primary" onclick="addpost()">add</button>
       </div>
     </div>
   </div>
@@ -201,7 +202,7 @@
   right: 0;bottom: 0;"></div>
 <!-- alert -->
 
-<div id="think" data-bs-toggle="modal" data-bs-target="#think"  >
+<div id="think" onclick="handleaddpost()"  >
 <span id="blus">+</span>
 </div>
 
@@ -232,6 +233,9 @@ window.addEventListener("scroll" ,function(){
 //======================= infinte scrool====================//
 
 function addpost(){ 
+     let postId =document.getElementById("post-edit-id").value
+     let iscreate =postId ==null ||postId ==""
+  
 
      let Title= document.getElementById("title-post").value
      let textarea= document.getElementById("text-post").value
@@ -248,11 +252,36 @@ function addpost(){
         const headers ={
           "authorization":`Bearer ${token}`
         }
-        axios.post(('https://tarmeezacademy.com/api/v1/posts'),formData,{
+
+   if (iscreate) {
+    axios.post(('https://tarmeezacademy.com/api/v1/posts'),formData,{
          
-            headers:headers
-          
-        })
+         headers:headers
+       
+     })
+
+      .then(function (response) {
+          console.log(response);
+
+          const modal = document.getElementById("think")
+          const modleinstance = bootstrap.Modal.getInstance(modal)
+          modleinstance.hide()
+          showalert("تم انشاء المنشور بنجاح")
+      // location.reload()
+      getdatabyAxios()
+      })
+      .catch(function (error) {
+        showalert(error.response.data.message,"danger");
+          console.log(error.response.data.message)
+      });
+
+   }else{
+    formData.append("_method" ,"put")
+    axios.post((`https://tarmeezacademy.com/api/v1/posts/${postId}`),formData,{
+         
+         headers:headers
+       
+     })
 
       .then(function (response) {
           console.log(response);
@@ -269,6 +298,36 @@ function addpost(){
           console.log(error.response.data.message)
       });
 
+   }
+
+
+
+
+
+
+
+
+    //     axios.post(('https://tarmeezacademy.com/api/v1/posts'),formData,{
+         
+    //      headers:headers
+       
+    //  })
+
+    //   .then(function (response) {
+    //       console.log(response);
+
+    //       const modal = document.getElementById("think")
+    //       const modleinstance = bootstrap.Modal.getInstance(modal)
+    //       modleinstance.hide()
+    //       showalert("تم انشاء المنشور بنجاح")
+    //   location.reload()
+
+    //   })
+    //   .catch(function (error) {
+    //     showalert(error.response.data.message,"danger");
+    //       console.log(error.response.data.message)
+    //   });
+
    
 
 
@@ -279,5 +338,5 @@ function addpost(){
   </script>
 </body>
 
-<script src="main.js"></script>
+<script src="./main.js"></script>
 </html>
