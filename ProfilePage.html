@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="style.css"/>
    
    <script src="./node_modules/axios/dist/axios.js"></script>
+    <script src="./main.js"></script>
    
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- <script src="./node_modules/bootstrap-icons/font/bootstrap-icons.min.css"></script> -->
@@ -21,7 +22,7 @@
     </style>
 </head>
 <body style="position: relative;">
-    <!-- <a href="Postditels.html">to detalse</a> -->
+    <a href="./index.html">to home</a>
    
        <!-- navbar -->
            <div class="container mt-2 d-flex justify-content-center " >
@@ -61,6 +62,104 @@
                    </div>
                  </nav>
              </div>
+       <!-- navbar -->
+       <div class="container d-flex justify-content-center">
+        <div class="post mt-5 col-9  " >
+            <!-- id="Posts" -->
+            <div class="card">
+              <div class="card-header">
+                <div id="imgP"></div> 
+                <div class="hed shadow-lg mb-2">
+                <img id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle ">
+                <span><a href="/index.html">elsheshatwy</a></span>
+               </div>
+                <img  class="w-100  " src="https://images.pexels.com/photos/18968224/pexels-photo-18968224/free-photo-of-light.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
+              </div>
+              <div class="card-body">
+                <h6>5 minent ago</h6>
+                <h4>kkkkkkkkkkkkkkkk</h4>
+                <h5>kkkkkkkkkkkkkkkk</h5>
+                <hr>
+                <span>
+                  <i class="fa-regular fa-comment"></i> ()comimnts
+                </span>
+              
+              </div>
+            </div>
+          </div> 
+           
+      
+      
+        </div>
+        <!-- modle -->
+        <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Login:</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">user_name:</label>
+                    <input type="text" class="form-control" id="gmail-id"  >
+                    </div>
+                    <div class="mb-3">
+                    <label for="message-text" class="col-form-label" >password:</label>
+                    <input class="form-control" id="password-id" ></input>
+                    </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                <button type="button" id="btn" class="btn btn-primary">login</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- 2 -->
+        <div class="modal fade" id="register-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">register:</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Your-img</label>
+                    <input type="file" class="form-control" id="register-img"  >
+                    </div>
+                    <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">name:</label>
+                    <input type="text" class="form-control" id="name-id"  >
+                    </div>
+                    <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">user_name:</label>
+                    <input type="text" class="form-control" id="register-gmail-id"  >
+                    </div>
+                    <div class="mb-3">
+                    <label for="message-text" class="col-form-label" >password:</label>
+                    <input class="form-control" id="register-password-id" ></input>
+                    </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                <button type="button" id="btn-register" class="btn btn-primary">Register</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- modle -->
 
 </body>
+<script src="./main.js"></script>
+<script src="./profile.js"></script>
 </html>
+
+
+
+
