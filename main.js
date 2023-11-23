@@ -1,5 +1,7 @@
 // const { default: axios } = require("axios")
 
+// const { Alert } = require("bootstrap")
+
 // ============= FECHING-DATA-FROM API ============//
 getdatabyAxios=(relode = true,page =1)=>{
     axios.get(`https://tarmeezacademy.com/api/v1/posts?limit=5&page=${page}`)
@@ -19,7 +21,7 @@ getdatabyAxios=(relode = true,page =1)=>{
         if(ismyPost){
         
         buttoncontent = ` <button onclick="editonclick('${encodeURIComponent(JSON.stringify(post))}')" class="btn btn-primary float-end" style=" margin : 7px;">edit</button>`
-        deletebtn = ` <button onclick="deleteonclick(post.id)" class="btn btn-danger float-end" style=" margin : 7px;">delet</button>`
+        deletebtn = ` <button onclick="deleteonclick('${encodeURIComponent(JSON.stringify(post))}')" class="btn btn-danger float-end" style=" margin : 7px;">delet</button>`
 
 
         }
@@ -295,16 +297,61 @@ const handleaddpost=()=>{
 }
 
 
-const deleteonclick =(id)=>{
+// const deleteonclick =(id)=>{
 
-axios.delete(`https://tarmeezacademy.com/api/v1/post/${id}`).then((res)=>{
-  console.log(id)
+// axios.delete(`https://tarmeezacademy.com/api/v1/post/${id}`).then((res)=>{
+//   console.log(id)
+// console.log(res)
+// }).catch((error)=>{
+// console.log(error.message)
+
+// })
+
+
+
+// }
+
+function deleteonclick(postobject){
+
+  let post= JSON.parse(decodeURIComponent(postobject))
+  console.log(post)
+ 
+  document.getElementById("delete-post-id-input").value =post.id
+
+
+  
+ postModle = new bootstrap.Modal(document.getElementById("delate-modle"),{})
+ postModle.toggle()
+
+}
+
+// delete 
+let deletePost=(id)=> {
+  const postId = document.getElementById("delete-post-id-input").value 
+  let token = localStorage.getItem("token");
+  const headers ={
+    "authorization":`Bearer ${token}`
+  }
+
+    
+  // alert(postId)
+axios.delete(`https://tarmeezacademy.com/api/v1/posts/${postId}`,{
+  headers:headers
+}).then((res)=>{
+  // console.log(id)
+  // showalert("تم الحذف بنجاح")
+ 
+  const modal = document.getElementById("delate-modle")
+  const modleinstance = bootstrap.Modal.getInstance(modal)
+  modleinstance.hide()
+ location.reload()
+showalert("تم حذف المنشور  بنجاح") 
+
 console.log(res)
-}).catch((error)=>{
-console.log(error.message)
-
+}) .catch(function (error) {
+  showalert(error.response.data.message,"danger");
+    console.log(error.response)
 })
-
 
 
 }

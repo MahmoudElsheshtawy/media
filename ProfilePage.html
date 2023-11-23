@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myage</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css"/>
+   
+   <script src="./node_modules/axios/dist/axios.js"></script>
+   
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- <script src="./node_modules/bootstrap-icons/font/bootstrap-icons.min.css"></script> -->
+    <style>
+
+      body{
+        background-color: #f0ecff;
+      }
+
+    </style>
+</head>
+<body style="position: relative;">
+    <!-- <a href="Postditels.html">to detalse</a> -->
+   
+       <!-- navbar -->
+           <div class="container mt-2 d-flex justify-content-center " >
+               <nav class="navbar navbar-expand-lg col-9 bg-body-tertiary shadow-sm rounded">
+                   <div class="container-fluid">
+                     <div id="information" class=" d-flex align-items-center mx-2">
+                      
+                       <img src="https://images.pexels.com/photos/15118791/pexels-photo-15118791/free-photo-of-a-person-holding-a-picture.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" id="img-user" style="width: 40px;height: 40px; margin-right: 10px; border-radius: 50%; object-fit: cover;background-position: center;"/>
+                       <span id="name-user" class="fw-bold">elsheshatwy</span>
+                    </div>
+                     <!-- <a class="navbar-brand" href="#">Sheshtawy</a> -->
+                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                       <span class="navbar-toggler-icon"></span>
+                     </button>
+                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                         <li class="nav-item">
+                           <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                         </li>
+                         <li class="nav-item">
+                           <a class="nav-link" href="#">Link</a>
+                         </li>
+                    
+                       </ul>
+                       <div id="loginDiv" >
+                           <button id="login" type="button" data-bs-toggle="modal" data-bs-target="#login-modal" class="btn btn-outline-success fw-bold mx-1">login</button>
+                           <button id="rgister-btn" type="button" class="btn btn-outline-success fw-bold" data-bs-toggle="modal" data-bs-target="#register-modal">register</button>
+                          
+   
+                       </div>
+                       <div id="logoutDiv" onclick="logoud()" >
+                         
+                         <button  class="btn btn-outline-danger fw-bold" >Logout </button>
+                       </div>
+                     </div>
+                   
+                   </div>
+                 </nav>
+             </div>
+
+</body>
+</html>
