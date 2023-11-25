@@ -17,6 +17,9 @@ getUserPost=()=>{
         // posts
         document.getElementById("user-number-post").innerHTML =users.posts_count
         document.getElementById("user-number-comment").innerHTML =users.comments_count
+        document.getElementById("user-img").src =users.profile_image
+
+     
 
     
 
