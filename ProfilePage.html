@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css"/>
    
    <script src="./node_modules/axios/dist/axios.js"></script>
-    <script src="./main.js"></script>
+    <!-- <script src="./main.js"></script> -->
    
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- <script src="./node_modules/bootstrap-icons/font/bootstrap-icons.min.css"></script> -->
@@ -43,7 +43,7 @@
                            <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
                          </li>
                          <li class="nav-item">
-                           <a class="nav-link" href="#">Link</a>
+                           <a class="nav-link" href="./ProfilePage.html">profile</a>
                          </li>
                     
                        </ul>
@@ -109,37 +109,40 @@
           </div>
             </div>
           <!-- 3 -->
-          
-<div class="container d-flex justify-content-center" >
-  <div class="post mt-5 col-9  " id="Posts-user">
-    
-      <!-- <div class="card">
-        <div class="card-header">
-          <div id="imgP"></div> 
-          <div class="hed shadow-lg mb-2">
-          <img style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle ">
-          <span><a href="/index.html">elsheshatwy</a></span>
-         </div>
-          <img  class="w-100  " src="https://images.pexels.com/photos/18968224/pexels-photo-18968224/free-photo-of-light.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
-        </div>
-        <div class="card-body">
-          <h6>5 minent ago</h6>
-          <h4>kkkkkkkkkkkkkkkk</h4>
-          <h5>kkkkkkkkkkkkkkkk</h5>
-          <hr>
-          <span>
-            <i class="fa-regular fa-comment"></i> ()comimnts
-          </span>
-        
-        </div>
-      </div> -->
-    </div> 
+          <div class="container d-flex justify-content-center" >
+            <div class="post mt-5 col-9" id="oooo">
+              
+              <div class="card">
+                <div class="card-header">
+                
+                 <div class="hed shadow-lg mb-2">
+                  <img id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle " src="">
+                  
+                  <span></span>
+                
+                  </div>
+                </div>
+                <div class="card-body" >
+                <img src="" class="w-100  "/>
+           
+                  <h6></h6>
+                  <h4></h4>
+                  <h5></h5>
+                  <hr>
+                  <span>
+                    <i class="fa-regular fa-comment"></i> comimnts
+                  </span>
+                
+                </div>
+              </div>
+              </div> 
+
      
 
 
   </div>
        <!-- main -->
-
+      
      
         <!-- modle -->
         <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -203,9 +206,68 @@
             </div>
             </div>
         </div>
-        <!-- modle -->
+        <!-- <delate -->
+  <div class="modal fade" id="delate-modle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="delate-post-title">are you sure delete your post</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- <div class="modal-body">
+        
+        </div> -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+          <button type="button" id="delate-post-btn" class="btn btn-danger" onclick="deletePost()">Delete</button>
 
+          <input type="text" id="delete-post-id-input" value="">
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- <delate -->
+  <div class="modal fade" id="think" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="post-modle-title">what do you think</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Title:</label>
+              <input type="text" class="form-control" id="title-post"  >
+              <input type="hidden" class="form-control" id="post-edit-id" value=""  >
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">text:</label>
+              <textarea type="text" class="form-control" id="text-post" ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">img:</label>
+              <input type="file" class="form-control" id="img-post"  >
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+          <button type="button" id="think-edit-post" class="btn btn-primary" onclick="addpost()">add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- new post -->
+        <!-- modle -->
+        <!-- alert -->
+<div id="liveAlertPlaceholder" class="fade show " style="position:fixed;z-index: 999999;
+right: 0;bottom: 0;">
+</div>
+<!-- alert -->
+       
 </body>
+
 <script src="./main.js"></script>
 <script src="./profile.js"></script>
 </html>

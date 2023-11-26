@@ -221,7 +221,8 @@
 
 <!-- alert -->
 <div id="liveAlertPlaceholder" class="fade show " style="position:fixed;z-index: 999999;
-  right: 0;bottom: 0;"></div>
+  right: 0;bottom: 0;">
+  </div>
 <!-- alert -->
 
 <div id="think" onclick="handleaddpost()"  >
@@ -254,106 +255,106 @@ window.addEventListener("scroll" ,function(){
 
 //======================= infinte scrool====================//
 
-function addpost(){ 
-     let postId =document.getElementById("post-edit-id").value
-     let iscreate =postId ==null ||postId ==""
+// function addpost(){ 
+//      let postId =document.getElementById("post-edit-id").value
+//      let iscreate =postId ==null ||postId ==""
   
 
-     let Title= document.getElementById("title-post").value
-     let textarea= document.getElementById("text-post").value
-     let img= document.getElementById("img-post").files[0]
+//      let Title= document.getElementById("title-post").value
+//      let textarea= document.getElementById("text-post").value
+//      let img= document.getElementById("img-post").files[0]
 
-  //  createing form data
-    let formData =new FormData()
-    formData.append("title", Title)
-    formData.append( "body" ,textarea)
-    formData.append("image",img)
+//   //  createing form data
+//     let formData =new FormData()
+//     formData.append("title", Title)
+//     formData.append( "body" ,textarea)
+//     formData.append("image",img)
 
 
-        let token = localStorage.getItem("token");
-        const headers ={
-          "authorization":`Bearer ${token}`
-        }
+//         let token = localStorage.getItem("token");
+//         const headers ={
+//           "authorization":`Bearer ${token}`
+//         }
 
-   if (iscreate) {
-    axios.post(('https://tarmeezacademy.com/api/v1/posts'),formData,{
+//    if (iscreate) {
+//     axios.post(('https://tarmeezacademy.com/api/v1/posts'),formData,{
          
-         headers:headers
+//          headers:headers
        
-     })
+//      })
 
-      .then(function (response) {
-          console.log(response);
+//       .then(function (response) {
+//           console.log(response);
 
-          const modal = document.getElementById("think")
-          const modleinstance = bootstrap.Modal.getInstance(modal)
-          modleinstance.hide()
-          showalert("تم انشاء المنشور بنجاح")
-      // location.reload()
-      getdatabyAxios()
-      })
-      .catch(function (error) {
-        showalert(error.response.data.message,"danger");
-          console.log(error.response.data.message)
-      });
+//           const modal = document.getElementById("think")
+//           const modleinstance = bootstrap.Modal.getInstance(modal)
+//           modleinstance.hide()
+//           showalert("تم انشاء المنشور بنجاح")
+//       // location.reload()
+//       getdatabyAxios()
+//       })
+//       .catch(function (error) {
+//         showalert(error.response.data.message,"danger");
+//           console.log(error.response.data.message)
+//       });
 
-   }else{
-    formData.append("_method" ,"put")
-    axios.post((`https://tarmeezacademy.com/api/v1/posts/${postId}`),formData,{
+//    }else{
+//     formData.append("_method" ,"put")
+//     axios.post((`https://tarmeezacademy.com/api/v1/posts/${postId}`),formData,{
          
-         headers:headers
+//          headers:headers
        
-     })
+//      })
 
-      .then(function (response) {
-          console.log(response);
+//       .then(function (response) {
+//           console.log(response);
 
-          const modal = document.getElementById("think")
-          const modleinstance = bootstrap.Modal.getInstance(modal)
-          modleinstance.hide()
-          showalert("تم انشاء المنشور بنجاح")
-      location.reload()
+//           const modal = document.getElementById("think")
+//           const modleinstance = bootstrap.Modal.getInstance(modal)
+//           modleinstance.hide()
+//           showalert("تم انشاء المنشور بنجاح")
+//       location.reload()
 
-      })
-      .catch(function (error) {
-        showalert(error.response.data.message,"danger");
-          console.log(error.response.data.message)
-      });
+//       })
+//       .catch(function (error) {
+//         showalert(error.response.data.message,"danger");
+//           console.log(error.response.data.message)
+//       });
 
-   }
-
-
+//    }
 
 
 
 
 
 
-    //     axios.post(('https://tarmeezacademy.com/api/v1/posts'),formData,{
+
+
+//     //     axios.post(('https://tarmeezacademy.com/api/v1/posts'),formData,{
          
-    //      headers:headers
+//     //      headers:headers
        
-    //  })
+//     //  })
 
-    //   .then(function (response) {
-    //       console.log(response);
+//     //   .then(function (response) {
+//     //       console.log(response);
 
-    //       const modal = document.getElementById("think")
-    //       const modleinstance = bootstrap.Modal.getInstance(modal)
-    //       modleinstance.hide()
-    //       showalert("تم انشاء المنشور بنجاح")
-    //   location.reload()
+//     //       const modal = document.getElementById("think")
+//     //       const modleinstance = bootstrap.Modal.getInstance(modal)
+//     //       modleinstance.hide()
+//     //       showalert("تم انشاء المنشور بنجاح")
+//     //   location.reload()
 
-    //   })
-    //   .catch(function (error) {
-    //     showalert(error.response.data.message,"danger");
-    //       console.log(error.response.data.message)
-    //   });
+//     //   })
+//     //   .catch(function (error) {
+//     //     showalert(error.response.data.message,"danger");
+//     //       console.log(error.response.data.message)
+//     //   });
 
    
 
 
-}
+// }
 
 
 
@@ -361,4 +362,5 @@ function addpost(){
 </body>
 
 <script src="./main.js"></script>
+<script src="./profile.js"></script>
 </html>

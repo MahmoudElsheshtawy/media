@@ -28,14 +28,22 @@ getdatabyAxios=(relode = true,page =1)=>{
       let content =`
       <div class="card">
        <div class="card-header">
-       
-        <div class="hed shadow-lg mb-2">
-         <img id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle " src="${post.author.profile_image}">
+      
+
+       <div class="hed d-flex justify-content-between shadow-lg mb-2">
+       <div style="cursor: pointer;" onclick="handleProfilePage(${post.author.id})">
+       <img id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle " src="${post.author.profile_image}">
          
-         <span>${post.author.username}</span>
-         ${buttoncontent}
-         ${deletebtn}
+       <span>${post.author.username}</span>
+       </div>
+        <div>
+        ${buttoncontent}
+        ${deletebtn}</div>
          </div>
+
+
+     
+  
        </div>
        <div class="card-body" onclick="postcliced(${post.id})">
        <img  class="w-100  " src="${post.image}"/>
@@ -63,7 +71,13 @@ getdatabyAxios=(relode = true,page =1)=>{
     })
 }
 getdatabyAxios()
+{/* <div class="hed shadow-lg mb-2">
+<img id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle " src="${post.author.profile_image}">
 
+<span>${post.author.username}</span>
+${buttoncontent}
+${deletebtn}
+</div> */}
 // ============= FECHING-DATA-FROM API ============//
 
 // ============= LOGIN-BTN ============//
@@ -297,19 +311,6 @@ const handleaddpost=()=>{
 }
 
 
-// const deleteonclick =(id)=>{
-
-// axios.delete(`https://tarmeezacademy.com/api/v1/post/${id}`).then((res)=>{
-//   console.log(id)
-// console.log(res)
-// }).catch((error)=>{
-// console.log(error.message)
-
-// })
-
-
-
-// }
 
 function deleteonclick(postobject){
 
@@ -353,5 +354,113 @@ console.log(res)
     console.log(error.response)
 })
 
+
+}
+// 
+function addpost(){ 
+  let postId =document.getElementById("post-edit-id").value
+  let iscreate =postId ==null ||postId ==""
+
+
+  let Title= document.getElementById("title-post").value
+  let textarea= document.getElementById("text-post").value
+  let img= document.getElementById("img-post").files[0]
+
+//  createing form data
+ let formData =new FormData()
+ formData.append("title", Title)
+ formData.append( "body" ,textarea)
+ formData.append("image",img)
+
+
+     let token = localStorage.getItem("token");
+     const headers ={
+       "authorization":`Bearer ${token}`
+     }
+
+if (iscreate) {
+ axios.post(('https://tarmeezacademy.com/api/v1/posts'),formData,{
+      
+      headers:headers
+    
+  })
+
+   .then(function (response) {
+       console.log(response);
+
+       const modal = document.getElementById("think")
+       const modleinstance = bootstrap.Modal.getInstance(modal)
+       modleinstance.hide()
+       showalert("تم انشاء المنشور بنجاح")
+   // location.reload()
+   getdatabyAxios()
+   })
+   .catch(function (error) {
+     showalert(error.response.data.message,"danger");
+       console.log(error.response.data.message)
+   });
+
+}else{
+ formData.append("_method" ,"put")
+ axios.post((`https://tarmeezacademy.com/api/v1/posts/${postId}`),formData,{
+      
+      headers:headers
+    
+  })
+
+   .then(function (response) {
+       console.log(response);
+
+       const modal = document.getElementById("think")
+       const modleinstance = bootstrap.Modal.getInstance(modal)
+       modleinstance.hide()
+       showalert("تم انشاء المنشور بنجاح")
+   location.reload()
+
+   })
+   .catch(function (error) {
+     showalert(error.response.data.message,"danger");
+       console.log(error.response.data.message)
+   });
+
+}
+
+
+
+
+
+
+
+
+ //     axios.post(('https://tarmeezacademy.com/api/v1/posts'),formData,{
+      
+ //      headers:headers
+    
+ //  })
+
+ //   .then(function (response) {
+ //       console.log(response);
+
+ //       const modal = document.getElementById("think")
+ //       const modleinstance = bootstrap.Modal.getInstance(modal)
+ //       modleinstance.hide()
+ //       showalert("تم انشاء المنشور بنجاح")
+ //   location.reload()
+
+ //   })
+ //   .catch(function (error) {
+ //     showalert(error.response.data.message,"danger");
+ //       console.log(error.response.data.message)
+ //   });
+
+
+
+
+}
+// 
+const handleProfilePage= (userId)=>{
+//  alert(userid)
+
+window.location = `ProfilePage.html?userid${userId}`
 
 }
