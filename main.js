@@ -464,3 +464,9 @@ const handleProfilePage= (userId)=>{
 window.location = `ProfilePage.html?userid=${userId}`
 
 }
+const myprofilepage =()=>{
+  let user = getCurrentuser()
+  const userId =user.id
+window.location = `ProfilePage.html?userid=${userId}`
+  
+}
