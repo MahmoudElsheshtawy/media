@@ -2,9 +2,16 @@
 setupUi()
 
 // logoud()
-getUserPost=()=>{
+// 
+function getuserId(){
   const urlParams = new URLSearchParams(window.location.search)
   const id =urlParams.get("userid")
+  return id
+}
+getUserPost=()=>{
+let id = getuserId()
+// alert(id)
+// return
     axios.get(`https://tarmeezacademy.com/api/v1/users/${id}`)
     .then((response)=>{
        let users = response.data.data
@@ -14,7 +21,7 @@ getUserPost=()=>{
         //  heder
         document.getElementById("user-email").innerHTML =users.email
         document.getElementById("user-name").innerHTML =users.username
-        document.getElementById("user-name").innerHTML =users.name
+        document.getElementById("user-age").innerHTML =users.name
         // posts
         document.getElementById("user-number-post").innerHTML =users.posts_count
         document.getElementById("user-number-comment").innerHTML =users.comments_count
@@ -28,9 +35,8 @@ getUserPost()
 
 
 getpostuserPage=()=>{
-  const urlParams = new URLSearchParams(window.location.search)
-const id =urlParams.get("userid")
-// let id =5858
+  
+let id = getuserId()
   axios.get(`https://tarmeezacademy.com/api/v1/users/${id}/posts`)
   .then((response)=>{
      let posts = response.data.data

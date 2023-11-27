@@ -461,6 +461,6 @@ if (iscreate) {
 const handleProfilePage= (userId)=>{
 //  alert(userid)
 
-window.location = `ProfilePage.html?userid${userId}`
+window.location = `ProfilePage.html?userid=${userId}`
 
 }
