@@ -217,6 +217,7 @@
     </div>
   </div>
 <!-- <delate -->
+
 <!-- modle -->
 
 <!-- alert -->
@@ -225,13 +226,11 @@
   </div>
 <!-- alert -->
 
-<div id="think" onclick="handleaddpost()"  >
+<div id="think" onclick="handleaddpost()">
 <span id="blus">+</span>
 </div>
 
 <script>
-
-
 
 let currentPage = 1
 let lastPage =1
@@ -240,6 +239,7 @@ let lastPage =1
 
 window.addEventListener("scroll" ,function(){
 //  return boolan
+
   const endOfPage = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
 
   if (endOfPage && currentPage <lastPage) {
@@ -249,9 +249,6 @@ window.addEventListener("scroll" ,function(){
   }
 
 })
-
-
-
 
 //======================= infinte scrool====================//
 
