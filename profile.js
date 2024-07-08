@@ -19,9 +19,9 @@ let id = getuserId()
       
          document.getElementById("name").innerHTML =users.username
         //  heder
-        document.getElementById("user-email").innerHTML =users.email
-        document.getElementById("user-name").innerHTML =users.username
-        document.getElementById("user-age").innerHTML =users.name
+        document.getElementById("user-email").innerHTML =`Gmail:${users.email}`
+        document.getElementById("user-name").innerHTML =`User_Name:${users.username}`
+        document.getElementById("user-age").innerHTML =`Name:${users.name}`
         // posts
         document.getElementById("user-number-post").innerHTML =users.posts_count
         document.getElementById("user-number-comment").innerHTML =users.comments_count
@@ -65,7 +65,7 @@ let id = getuserId()
     <div class="card">
      <div class="card-header">
      
-      <div class="hed d-flex justify-content-between shadow-lg mb-2">
+      <div class="hed  d-flex justify-content-between shadow-lg mb-2">
      <div style="cursor: pointer;">
      <img id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle " src="${post.author.profile_image}">
        

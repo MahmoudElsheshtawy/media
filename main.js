@@ -1,4 +1,4 @@
-// const { default: axios } = require("axios")
+
 
 // const { Alert } = require("bootstrap")
 
@@ -46,7 +46,7 @@ getdatabyAxios=(relode = true,page =1)=>{
   
        </div>
        <div class="card-body" onclick="postcliced(${post.id})">
-       <img  class="w-100  " src="${post.image}"/>
+       <img  class="immg w-100  " src="${post.image}"/>
 
          <h6>${post.created_at}</h6>
          <h4>${post.author.name}</h4>
@@ -71,13 +71,7 @@ getdatabyAxios=(relode = true,page =1)=>{
     })
 }
 getdatabyAxios()
-{/* <div class="hed shadow-lg mb-2">
-<img id="img-profile" style="width: 40px; height: 40px; object-fit: cover;" class="  m-2 rounded-circle " src="${post.author.profile_image}">
 
-<span>${post.author.username}</span>
-${buttoncontent}
-${deletebtn}
-</div> */}
 // ============= FECHING-DATA-FROM API ============//
 
 // ============= LOGIN-BTN ============//
@@ -258,7 +252,7 @@ function getCurrentuser(){
    }
 
 return user
-console.log(user)
+
 }
 // ============= CURRNT-USER ============//
 
@@ -424,34 +418,6 @@ if (iscreate) {
    });
 
 }
-
-
-
-
-
-
-
-
- //     axios.post(('https://tarmeezacademy.com/api/v1/posts'),formData,{
-      
- //      headers:headers
-    
- //  })
-
- //   .then(function (response) {
- //       console.log(response);
-
- //       const modal = document.getElementById("think")
- //       const modleinstance = bootstrap.Modal.getInstance(modal)
- //       modleinstance.hide()
- //       showalert("تم انشاء المنشور بنجاح")
- //   location.reload()
-
- //   })
- //   .catch(function (error) {
- //     showalert(error.response.data.message,"danger");
- //       console.log(error.response.data.message)
- //   });
 
 
 
